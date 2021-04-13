@@ -19,7 +19,7 @@ class items:
     def selec_brand(self, brand):
         self.driver.find_elements(*self.see_all)[3].click()
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.brand)).click()
-        WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.apply)).click()
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.apply)).click()
 
     def selec_size(self, number):
         self.driver.find_elements(*self.size)[number].click()
@@ -29,9 +29,23 @@ class items:
 
     def order_by(self):
         self.driver.find_elements(*self.select)[3].click()
-        WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(self.sort)).click()
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.sort)).click()
 
     def print(self, number):
         for i in range(number):
             print(self.driver.find_elements(*self.titles)[i].text)
             print(self.driver.find_elements(*self.prices)[i].text)
+
+    def order_title(self, number):
+        array_title = []
+        for i in range(number):
+            array_title.append(self.driver.find_elements(*self.titles)[i].text)
+        array_title_ascend = sorted(array_title)
+        print(array_title_ascend)
+
+    def order_price(self, number):
+        array_price = []
+        for i in range(number):
+            array_price.append(self.driver.find_elements(*self.prices)[i].text)
+        array_price_descendt = sorted(array_price, reverse=True)
+        print(array_price_descendt)

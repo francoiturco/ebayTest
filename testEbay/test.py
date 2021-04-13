@@ -13,7 +13,7 @@ class Test(unittest.TestCase):
         #option.add_argument('--headless')
         self.driver = webdriver.Chrome('testEbay/driver/chromedriver.exe', chrome_options=option)
         self.driver.get('https://www.ebay.com/')
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(10)
         self.index = index(self.driver)
         self.items = items(self.driver)
 
@@ -24,7 +24,8 @@ class Test(unittest.TestCase):
         self.items.print_quantity()
         self.items.order_by()
         self.items.print(5)
-        #time.sleep(3)
+        self.items.order_title(3)
+        self.items.order_price(3)
 
     def tearDown(self):
         self.driver.close()
