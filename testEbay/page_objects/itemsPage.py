@@ -16,6 +16,9 @@ class items:
         self.titles = (By.XPATH, '//a[@class="s-item__link"]')
         self.prices = (By.XPATH, '//span[@class="s-item__price"]')
 
+    def item_find(self):
+        return self.driver.find_elements(*self.quantity_results)[12].text
+
     def selec_brand(self, brand):
         self.driver.find_elements(*self.see_all)[3].click()
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.brand)).click()

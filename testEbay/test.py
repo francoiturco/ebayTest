@@ -19,6 +19,7 @@ class Test(unittest.TestCase):
 
     def test_ebay(self):
         self.index.search_item('bikes')
+        self.assertTrue(self.items.item_find() == 'bikes',)
         self.items.selec_brand('SCOTT')
         self.items.selec_size(14)
         self.items.print_quantity()
