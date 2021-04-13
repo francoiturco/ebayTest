@@ -18,12 +18,12 @@ class Test(unittest.TestCase):
         self.items = items(self.driver)
 
     def test_ebay(self):
-        self.index.search_item('shoes')
-        self.items.selec_brand()
-        self.items.selec_size()
+        self.index.search_item('bikes')
+        self.items.selec_brand('SCOTT')
+        self.items.selec_size(14)
         self.items.print_quantity()
         self.items.order_by()
-        self.items.print(8)
+        self.items.print(5)
         #time.sleep(3)
 
     def tearDown(self):
