@@ -24,6 +24,7 @@ class Test(unittest.TestCase):
         self.items.selec_size(14)
         self.items.print_quantity()
         self.items.order_by()
+        self.items.assert_prices(5)
         self.items.print(5)
         self.items.order_title(3)
         self.items.order_price(3)

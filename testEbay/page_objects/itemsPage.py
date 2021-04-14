@@ -1,3 +1,4 @@
+import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -34,6 +35,22 @@ class items:
         self.driver.find_elements(*self.select)[3].click()
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.sort)).click()
 
+    def assert_prices(self, number):
+        array_price = []
+        for i in range(number):
+            array_price.append(self.driver.find_elements(*self.prices)[i].text)
+        prices1 = []
+        prices2 = []
+        for i in range(len(array_price)):
+            prices1.append(array_price[i].replace(" ", ""))
+            prices2.append(prices1[i].strip('USD'))
+        prices3 = [float(x) for x in prices2]
+        array = sorted(prices3, reverse=True)
+        print(array)
+        # Agregar el assert que compara que el primer valor sea mas grande que el segundo, 
+        # que el segundo sea mas grande que el tercero, que el tercero sea mas 
+        # grande que el cuarto y que el cuarto valor sea mas grande que el quinto.
+    
     def print(self, number):
         for i in range(number):
             print(self.driver.find_elements(*self.titles)[i].text)
@@ -50,5 +67,11 @@ class items:
         array_price = []
         for i in range(number):
             array_price.append(self.driver.find_elements(*self.prices)[i].text)
-        array_price_descendt = sorted(array_price, reverse=True)
+        prices1 = []
+        prices2 = []
+        for i in range(len(array_price)):
+            prices1.append(array_price[i].replace(" ", ""))
+            prices2.append(prices1[i].strip('USD'))
+        prices3 = [float(x) for x in prices2]
+        array_price_descendt = sorted(prices3, reverse=True)
         print(array_price_descendt)
