@@ -11,7 +11,7 @@ class Test(unittest.TestCase):
         option = Options()
         option.add_argument('start-maximized')
         #option.add_argument('--headless')
-        self.driver = webdriver.Chrome('testEbay/driver/chromedriver.exe', chrome_options = option)
+        self.driver = webdriver.Chrome('./testEbay/driver/chromedriver.exe', chrome_options=option)
         self.driver.get('https://www.ebay.com/')
         self.driver.implicitly_wait(10)
         self.index = index(self.driver)
