@@ -7,7 +7,7 @@ class items:
 
     def __init__(self, my_driver):
         self.driver = my_driver
-        self.size = (By.XPATH, '//span[@class="cbx x-refine__multi-select-cbx"]')
+        self.size = (By.XPATH, '//span[contains(text(),"29 pulgadas")]')
         self.see_all = (By.XPATH, '//span[contains(text(),"ver todo")]')
         self.brand = (By.XPATH, '//span[contains(text(),"SCOTT")]')
         self.brand_text = (By.XPATH, '//a[@_sp="p2351460.m43632.l8567"]')
@@ -22,16 +22,16 @@ class items:
     def item_find(self):
         return self.driver.find_elements(*self.quantity_results)[12].text
 
-    def selec_brand(self, brand):
+    def select_brand(self, brand):
         self.driver.find_elements(*self.see_all)[3].click()
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.brand)).click()
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.apply)).click()
     
     def assert_brand(self):
-        return WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.brand_text)).text
+        return WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(self.brand_text)).text
 
-    def selec_size(self, number):
-        self.driver.find_elements(*self.size)[number].click()
+    def select_size(self):
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(self.size)).click()
 
     def assert_size(self):
         return self.driver.find_elements(*self.size_text)[2].text
